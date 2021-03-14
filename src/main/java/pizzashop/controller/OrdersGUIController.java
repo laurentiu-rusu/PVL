@@ -9,8 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import pizzashop.model.MenuDataModel;
-import pizzashop.gui.OrdersGUI;
-import pizzashop.service.PaymentAlert;
+import pizzashop.utils.PaymentAlert;
 import pizzashop.service.PizzaService;
 
 import java.util.Calendar;
@@ -68,11 +67,11 @@ public class OrdersGUIController {
     public void setService(PizzaService service, int tableNumber){
         this.service=service;
         this.tableNumber=tableNumber;
-        initData();
+        loadDataFromService();
 
     }
 
-    private void initData(){
+    private void loadDataFromService(){
         menuData = FXCollections.observableArrayList(service.getMenuData());
         menuData.setAll(service.getMenuData());
         orderTable.setItems(menuData);

@@ -16,18 +16,20 @@ import pizzashop.repository.MenuRepository;
 import pizzashop.repository.PaymentRepository;
 import pizzashop.service.PizzaService;
 
+import java.net.URL;
 import java.util.Optional;
 
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
 
-        MenuRepository repoMenu=new MenuRepository();
-        PaymentRepository payRepo= new PaymentRepository();
+        MenuRepository repoMenu = new MenuRepository();
+        PaymentRepository payRepo = new PaymentRepository();
         PizzaService service = new PizzaService(repoMenu, payRepo);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/mainFXML.fxml"));
+        URL url = getClass().getClassLoader().getResource("fxml/mainFXML.fxml");
+        FXMLLoader loader = new FXMLLoader(url);
         //VBox box = loader.load();
         Parent box = loader.load();
         MainGUIController ctrl = loader.getController();
@@ -40,18 +42,16 @@ public class Main extends Application {
             public void handle(WindowEvent event) {
                 Alert exitAlert = new Alert(Alert.AlertType.CONFIRMATION, "Would you like to exit the Main window?", ButtonType.YES, ButtonType.NO);
                 Optional<ButtonType> result = exitAlert.showAndWait();
-                if (result.get() == ButtonType.YES){
-                    //Stage stage = (Stage) this.getScene().getWindow();
-                    System.out.println("Incasari cash: "+service.getTotalAmount(PaymentType.Cash));
-                    System.out.println("Incasari card: "+service.getTotalAmount(PaymentType.Card));
+                if (result.get() == ButtonType.YES) {
+                    System.out.println("Incasari cash: " + service.getTotalAmount(PaymentType.Cash));
+                    System.out.println("Incasari card: " + service.getTotalAmount(PaymentType.Card));
 
                     primaryStage.close();
                 }
                 // consume event
-                else if (result.get() == ButtonType.NO){
+                else if (result.get() == ButtonType.NO) {
                     event.consume();
-                }
-                else {
+                } else {
                     event.consume();
 
                 }
@@ -61,9 +61,10 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(box));
         primaryStage.show();
         KitchenGUI kitchenGUI = new KitchenGUI();
-        kitchenGUI.KitchenGUI();
+        kitchenGUI.startKitchenGUI();
     }
 
-    public static void main(String[] args) { launch(args);
+    public static void main(String[] args) {
+        launch(args);
     }
 }

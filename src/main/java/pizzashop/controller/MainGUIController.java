@@ -121,7 +121,6 @@ public class MainGUIController  {
                              +"the Pay order button "+ System.lineSeparator()
             );
 
-            text1.setFont(Font.font(java.awt.Font.SERIF, 15 ) );
             rootGroup.getChildren().add(text1 );
 
             stage.setScene(scene);
