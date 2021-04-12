@@ -23,13 +23,21 @@ public class PizzaService {
 
     public List<MenuDataModel> getMenuData(){return menuRepo.getMenu();}
 
-    public List<Payment> getPayments(){return payRepo.getAll(); }
+    public List<Payment> getPayments(){
+        if (payRepo == null) return null;
+
+        return payRepo.getAll();
+    }
 
     public void addPayment(int table, PaymentType type, double amount) throws Exception {
         validator.validateTable(table);
         validator.validateAmount(amount);
         Payment payment= new Payment(table, type, amount);
         payRepo.add(payment);
+    }
+
+    public void setPayment(PaymentRepository payRepo) {
+        this.payRepo = payRepo;
     }
 
     public double getTotalAmount(PaymentType type){
