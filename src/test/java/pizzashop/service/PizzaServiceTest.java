@@ -19,6 +19,7 @@ class PizzaServiceTest {
         this.service = new PizzaService(menuRepo, payRepo);
     }
 
+    @Test
     @RepeatedTest(1)
     @Order(1)
     @Tag("amount")
@@ -32,6 +33,7 @@ class PizzaServiceTest {
         }
     }
 
+    @Test
     @RepeatedTest(2)
     @Order(8)
     @Tag("amount")
@@ -58,6 +60,7 @@ class PizzaServiceTest {
         }
     }
 
+    @Test
     @RepeatedTest(1)
     @Tag("table")
     @Order(2)
