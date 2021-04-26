@@ -1,10 +1,10 @@
 package pizzashop.service;
 
-import pizzashop.model.MenuDataModel;
-import pizzashop.model.Payment;
-import pizzashop.model.PaymentType;
-import pizzashop.repository.MenuRepository;
-import pizzashop.repository.PaymentRepository;
+import pizzashop.Lab4Tests.model.MenuDataModel;
+import pizzashop.Lab4Tests.model.Payment;
+import pizzashop.Lab4Tests.model.PaymentType;
+import pizzashop.Lab4Tests.repository.MenuRepository;
+import pizzashop.Lab4Tests.repository.PaymentRepository;
 import pizzashop.validator.PaymentValidator;
 
 import java.util.List;
@@ -29,11 +29,12 @@ public class PizzaService {
         return payRepo.getAll();
     }
 
-    public void addPayment(int table, PaymentType type, double amount) throws Exception {
+    public boolean addPayment(int table, PaymentType type, double amount) throws Exception {
         validator.validateTable(table);
         validator.validateAmount(amount);
         Payment payment= new Payment(table, type, amount);
         payRepo.add(payment);
+        return true;
     }
 
     public void setPayment(PaymentRepository payRepo) {
