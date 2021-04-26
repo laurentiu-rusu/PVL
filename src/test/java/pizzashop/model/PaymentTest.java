@@ -1,8 +1,8 @@
-package pizzashop.Lab4Tests.model;
+package pizzashop.model;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PaymentTest {
     @Test

@@ -1,14 +1,13 @@
-package pizzashop.Lab4Tests.repository;
+package pizzashop.repository;
 
 import org.junit.jupiter.api.Test;
-import pizzashop.Lab4Tests.model.Payment;
-import pizzashop.Lab4Tests.model.PaymentType;
+import org.mockito.Mockito;
+import pizzashop.model.Payment;
+import pizzashop.model.PaymentType;
 
 import java.util.Arrays;
 
 import static org.mockito.Mockito.mock;
-
-import org.mockito.Mockito;
 
 class PaymentRepositoryTest {
     private PaymentRepository paymentRepository;

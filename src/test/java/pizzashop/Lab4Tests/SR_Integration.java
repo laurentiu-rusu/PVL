@@ -3,10 +3,10 @@ package pizzashop.Lab4Tests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import pizzashop.Lab4Tests.model.Payment;
-import pizzashop.Lab4Tests.model.PaymentType;
-import pizzashop.Lab4Tests.repository.MenuRepository;
-import pizzashop.Lab4Tests.repository.PaymentRepository;
+import pizzashop.model.Payment;
+import pizzashop.model.PaymentType;
+import pizzashop.repository.MenuRepository;
+import pizzashop.repository.PaymentRepository;
 import pizzashop.service.PizzaService;
 
 import static org.mockito.Mockito.mock;
