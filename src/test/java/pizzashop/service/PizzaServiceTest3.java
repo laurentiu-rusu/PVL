@@ -1,5 +1,6 @@
 package pizzashop.service;
 
+import javafx.collections.FXCollections;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -8,8 +9,11 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import pizzashop.model.Payment;
 import pizzashop.model.PaymentType;
+import pizzashop.repository.MenuRepository;
 import pizzashop.repository.PaymentRepository;
 import pizzashop.service.PizzaService;
+
+import java.util.List;
 
 import static org.mockito.Mockito.mock;
 
@@ -18,6 +22,9 @@ class PizzaServiceTest3 {
 
     @Mock
     private PaymentRepository repository;
+
+    @Mock
+    private MenuRepository menuRepository;
 
     @InjectMocks
     private PizzaService pizzaService;
@@ -37,20 +44,14 @@ class PizzaServiceTest3 {
         Mockito.when(payment.getType()).thenReturn(PaymentType.Card);
         Mockito.when(payment.getAmount()).thenReturn(50d);
 
-        pizzaService.addPayment(1, PaymentType.Cash, 20d);
-        assert pizzaService.getPayments().get(0).getTableNumber() == 1;
+        try {
+            pizzaService.addPayment(1, PaymentType.Card, 10d);
+            Mockito.when(repository.getAll()).thenReturn(null);
 
-        Mockito.when(pizzaService.addPayment(1, PaymentType.Card, 10d)).thenReturn(true);
-        Mockito.when(pizzaService.addPayment(2, PaymentType.Card, 20d)).thenReturn(true);
-        Mockito.when(pizzaService.addPayment(3, PaymentType.Cash, 30d)).thenReturn(true);
-
-        pizzaService.addPayment(1, PaymentType.Card, 10d);
-        pizzaService.addPayment(2, PaymentType.Card, 20d);
-        pizzaService.addPayment(3, PaymentType.Cash, 30d);
-
-        Mockito.verify(pizzaService).addPayment(1, PaymentType.Card, 10d);
-        Mockito.verify(pizzaService).addPayment(2, PaymentType.Card, 20d);
-        Mockito.verify(pizzaService).addPayment(3, PaymentType.Cash, 30d);
+            assert pizzaService.getPayments() == null;
+        } catch (Exception ex) {
+            assert false;
+        }
     }
 
     @Test
