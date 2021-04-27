@@ -1,10 +1,10 @@
 package pizzashop.service;
 
-import pizzashop.Lab4Tests.model.MenuDataModel;
-import pizzashop.Lab4Tests.model.Payment;
-import pizzashop.Lab4Tests.model.PaymentType;
-import pizzashop.Lab4Tests.repository.MenuRepository;
-import pizzashop.Lab4Tests.repository.PaymentRepository;
+import pizzashop.model.MenuDataModel;
+import pizzashop.model.Payment;
+import pizzashop.model.PaymentType;
+import pizzashop.repository.MenuRepository;
+import pizzashop.repository.PaymentRepository;
 import pizzashop.validator.PaymentValidator;
 
 import java.util.List;
